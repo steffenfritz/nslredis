@@ -44,17 +44,21 @@ then
     exit 1
 fi
 
+echo 
 echo "+++ Downloading rds_modernm.zip"
 wget https://s3.amazonaws.com/rds.nsrl.nist.gov/RDS/current/rds_modernm.zip -q --show-progress
 
 # unzip
 EXPSIZE=`unzip -l rds_modernm.zip | tail -1 | awk '{ print $1/1000000000 }'`
+echo
 echo "+++ Expected unzipped size: $EXPSIZE GB"
+echo
 echo "We will need aprox. `3 * $EXPSIZE` GB of storage."
 
 read -p "Should I proceed? [y/n] " -n 1 -r
     if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
+    echo
     echo "I do not delete the temp directory."
     exit 1
 fi
