@@ -53,7 +53,7 @@ EXPSIZE=`unzip -l rds_modernm.zip | tail -1 | awk '{ print $1/1000000000 }'`
 echo
 echo "+++ Expected unzipped size: $EXPSIZE GB"
 echo
-echo "We will need aprox. `3 * $EXPSIZE` GB of storage."
+echo "We will need aprox. 3 * $EXPSIZE GB of storage."
 
 read -p "Should I proceed? [y/n] " -n 1 -r
     if [[ ! $REPLY =~ ^[Yy]$ ]]
@@ -78,4 +78,4 @@ cat redis_feed.txt | redis-cli --pipe
 
 # result
 
-echo "Done"
+echo "+++ Done"
