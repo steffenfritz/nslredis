@@ -12,13 +12,13 @@
 # and imports sha-1 as key and TRUE as value into redis.
 ########################################################################
 
-NOW=`date +"%Y-%m-%d"`
+NOW=$(date +"%Y-%m-%d")
 
 
 echo "+++ NSLREDIS v1.1.0"
 echo
 
-mkdir nsrl_minimal_$NOW && cd nsrl_minimal_$NOW
+mkdir nsrl_minimal_"$NOW" && cd nsrl_minimal_"$NOW" || exit
 
 echo "+++ Downloading metadata"
 
@@ -29,7 +29,7 @@ wget https://s3.amazonaws.com/rds.nsrl.nist.gov/RDS/current/rds_modernm.zip.sha 
 echo
 echo "+++ Summary release"
 
-RELVERS=`head -1 README.txt`
+RELVERS=$(head -1 README.txt)
 echo "Release version and date: $RELVERS"
 grep -m 1 "rds_modernm.zip" README.txt | awk '{ print "Archive file size: " $2 }'
 
@@ -39,7 +39,7 @@ then
     echo
     echo "Deleting temp download directory"
     cd ..
-    rm -rf nsrl_minimal_$NOW
+    rm -rf nsrl_minimal_"$NOW"
     echo "Done"
     exit 1
 fi
@@ -49,7 +49,7 @@ echo "+++ Downloading rds_modernm.zip"
 wget https://s3.amazonaws.com/rds.nsrl.nist.gov/RDS/current/rds_modernm.zip -q --show-progress
 
 # unzip
-EXPSIZE=`unzip -l rds_modernm.zip | tail -1 | awk '{ print $1/1000000000 }'`
+EXPSIZE=$(unzip -l rds_modernm.zip | tail -1 | awk '{ print $1/1000000000 }')
 echo
 echo "+++ Expected unzipped size: $EXPSIZE GB"
 echo
