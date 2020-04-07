@@ -15,7 +15,7 @@
 NOW=$(date +"%Y-%m-%d")
 
 
-echo "+++ NSLREDIS v1.1.0"
+echo "+++ NSLREDIS v1.0"
 echo
 
 mkdir nsrl_minimal_"$NOW" && cd nsrl_minimal_"$NOW" || exit
